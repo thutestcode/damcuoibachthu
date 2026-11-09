@@ -2,7 +2,7 @@
   "name": "damcuoibachthu",
   "version": "1.0.0",
   "private": true,
-  "description": "Thiệp cưới tông xanh lá và hoa trắng, HTML CSS JavaScript thuần",
+  "description": "Thiệp cưới Anh Thư & Thanh Bách, burgundy và hoa màu nước",
   "scripts": {
     "build": "node build.mjs",
     "check": "node --check config.js && node --check main.js"

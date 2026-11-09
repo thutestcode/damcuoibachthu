@@ -1,78 +1,62 @@
-# Thiệp cưới — damcuoibachthu
+# Thiệp cưới Anh Thư & Thanh Bách
 
-Website HTML/CSS/JavaScript thuần dựng theo bố cục thiệp mẫu https://chungdoi.com/i/thuuyen-tunglam. Không cần cài thư viện để chạy.
+Thiệp mời lễ thành hôn **Nguyễn Anh Thư & Đồng Thanh Bách**, lúc **7:00, Thứ Ba ngày 24/11/2026**, tức **16 tháng 10 năm Bính Ngọ**.
 
-**Đây là bản dựng đầu tiên. Tên, ngày 20/12/2026 và địa chỉ là dữ liệu minh họa. Ảnh là ảnh mẫu để đối chiếu bố cục, cần thay bằng ảnh của bạn trước khi gửi thiệp chính thức.**
+Tông burgundy, nền kem, hoa màu nước burgundy – hồng phấn – trắng ngà. Giữ bìa mở thiệp và bố cục chân dung nghiêng. Hai khung ảnh đang để trống theo yêu cầu, không tải ảnh mẫu.
 
-## Thay nội dung
+## Nội dung hiện tại
 
-Mở `config.js`, sửa:
+- Thông tin hai bên gia đình, lời mời và họ tên cô dâu – chú rể.
+- Ngày giờ lễ cưới và ngày âm lịch.
+- Timeline: 7:00 lễ ăn hỏi tại nhà gái; 10:00 lễ đón dâu tại nhà trai; 12:00 bữa cơm thân mật.
+- Địa chỉ dưới mô tả mỗi mốc; link Google Maps ở hai mốc tại Ocean Park 3.
+- Lời kết “Sự hiện diện…” và “Trân trọng cảm ơn!”.
+
+Đã bỏ album, đón khách/khai tiệc, đếm ngược, lịch tháng, nút thêm lịch, khu vực địa điểm/bản đồ riêng và sổ lưu bút. Website không dùng database hoặc localStorage.
+
+## Sửa nội dung hoặc thêm ảnh sau
+
+Mở `config.js`:
 
 | Mục | Trường |
 | --- | --- |
-| Cô dâu, chú rể | `bride`, `groom`: tên, họ tên đầy đủ, tên bố mẹ, địa chỉ, ảnh chân dung |
+| Tên và thông tin gia đình | `bride`, `groom` |
+| Thêm ảnh cô dâu | `bride.photo: './assets/photos/bride.jpg'` |
+| Thêm ảnh chú rể | `groom.photo: './assets/photos/groom.jpg'` |
 | Lời mời | `invitation` |
-| Ngày giờ | `date` có đuôi `+07:00`, `welcomeTime`, `endTime` |
-| Ngày âm lịch | `lunarDate` nhập thủ công |
-| Nơi tổ chức | `venue.name`, `venue.address`, `venue.mapsUrl`, `venue.embedUrl` |
-| Lịch trình | `timeline` |
-| Album | `photos` — thêm bao nhiêu ảnh cũng được |
-| Nhạc | `music` — đường dẫn MP3; để trống sẽ ẩn nút nhạc |
+| Ngày giờ | `date`, có múi giờ `+07:00` |
+| Ngày âm lịch | `lunarDate`, nhập thủ công |
+| Lịch trình | `timeline`, mỗi mục có `time`, `title`, `address` |
+| Google Maps | `mapsQuery` hoặc `mapsUrl` ở từng mục lịch trình |
+| Nhạc tùy chọn | `music`, để trống sẽ ẩn nút nhạc |
 | Lời kết | `closing` |
 
-Thay ảnh trong `assets/photos/` và giữ nguyên tên file, hoặc sửa đường dẫn trong `config.js`. Dùng đường dẫn tương đối `./assets/...` để hoạt động khi repo nằm trong một thư mục con trên GitHub Pages.
+Để ảnh trống, giữ `photo: ''`. Để thêm ảnh, tải ảnh vào `assets/photos/` rồi điền đường dẫn. Khung sẽ tự hiển thị ảnh khi cấu hình có giá trị. Dùng đường dẫn tương đối `./assets/...` để chạy trên GitHub Pages của repo.
 
-`venue.mapsUrl` là link chỉ đường Google Maps. `venue.embedUrl` là URL `src` từ Google Maps → Chia sẻ → Nhúng bản đồ, không dán cả thẻ iframe. Chưa có địa chỉ chính thức thì để trống hai mục này; website hiển thị chỗ chờ bản đồ và ẩn nút chỉ đường.
+Hai link Maps hiện mở **tìm kiếm theo đúng địa chỉ đã cung cấp**, chưa phải ghim tọa độ được xác minh của căn AD-14. Nếu có link ghim Google Maps chính xác, điền vào `mapsUrl`; trường này được ưu tiên trước `mapsQuery`.
 
-Đặt nhạc của bạn vào `assets/music.mp3` rồi sửa `music: './assets/music.mp3'`. Nhạc bắt đầu sau khi khách bấm Mở thiệp, tùy chính sách phát âm thanh của trình duyệt; luôn có nút bật/tắt khi đã cấu hình nhạc. Không kèm file nhạc mẫu.
+Có thể đặt tên khách mời qua `?guest=Anh%20Ch%E1%BB%8B` hoặc `guestName`. `?open=1` mở thẳng nội dung thiệp.
 
-Tên khách mời tùy chọn: thêm `?guest=Anh%20Ch%E1%BB%8B` sau link website hoặc sửa `guestName`. `?open=1` bỏ qua bìa thiệp, không tự phát nhạc.
+Đặt MP3 vào `assets/music.mp3` rồi sửa `music: './assets/music.mp3'` để bật nhạc sau khi bấm mở thiệp. Hiện chưa có file nhạc.
 
-## Chạy và kiểm tra
+## Chạy và xuất bản
 
-Có thể mở `index.html` trực tiếp để xem giao diện. Để kiểm tra kết nối sổ lưu bút, nên dùng một máy chủ HTTP, ví dụ tiện ích Live Server của trình soạn thảo.
+HTML, CSS và JavaScript thuần, không có dependency. Mở `index.html` để xem hoặc dùng Live Server.
 
 ```sh
 npm run check
 npm run build
 ```
 
-Build tạo `dist/` để dùng với dịch vụ hosting tĩnh. Không có dependency, không cần `npm install`. Các file gốc cũng chạy trực tiếp khi xuất bản từ thư mục gốc repo.
+Build sao chép website vào `dist/`. GitHub Pages cũng có thể chạy trực tiếp các file ở thư mục gốc repo.
 
-## GitHub Pages
-
-Trong repo chọn **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main → /(root) → Save**. GitHub sẽ hiển thị URL website sau khi triển khai xong.
-
-File `.nojekyll` đã có sẵn. Chưa tự bật GitHub Pages hoặc cấu hình tên miền trong lần dựng code này.
+Để bật GitHub Pages: **Settings → Pages → Source: Deploy from a branch → Branch: main → /(root) → Save**. Giữ nguyên thiết lập nếu đã bật trước đó.
 
 Hướng dẫn chính thức: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
-## Sổ lưu bút
+## Thiết kế và tài nguyên
 
-Mặc định là **chế độ xem thử**: lời chúc chỉ lưu trong localStorage của trình duyệt đang dùng. Không có lời chúc giả dựng sẵn. Nút đũa phép lấy gợi ý từ một danh sách câu chúc, không gọi AI.
+`assets/decorations/burgundy-flowers.png` là hoa trang trí mới tạo cho thiệp này, nền trong suốt, phong cách màu nước: cosmos màu rượu vang, hoa đậu thơm hồng phấn, hồng trắng ngà và lá màu taupe nhạt. Được dùng lại ở góc bìa, dải nền và các họa tiết chìm. Không dùng hoa xanh hoặc ảnh chân dung mẫu từ phiên bản trước.
 
-Để mọi khách cùng xem được lời chúc:
+Bố cục ban đầu tham khảo thiệp https://chungdoi.com/i/thuuyen-tunglam; mã ứng dụng được viết riêng. Không dùng API, dữ liệu khách mời hoặc khóa bản đồ từ trang tham chiếu.
 
-1. Chuẩn bị một dự án Supabase và chạy `supabase-guestbook.sql` trong SQL Editor.
-2. Điền URL dự án và **legacy anon public key** vào `guestbook.supabaseUrl` và `guestbook.supabaseAnonKey` trong `config.js`.
-3. Giữ `invitationId: 'damcuoibachthu'` khớp với điều kiện trong SQL.
-4. Thử gửi và đọc lời chúc từ hai trình duyệt khác nhau trước khi dùng chính thức.
-
-Không đưa `service_role` key, secret key hoặc mật khẩu database vào code trình duyệt. Mẫu SQL cho khách đọc và thêm lời chúc của thiệp này, không cho sửa hoặc xóa. Lời chúc là nội dung công khai. Chưa tích hợp kiểm duyệt, CAPTCHA hoặc giới hạn tần suất phía máy chủ; nếu cần nhận lời chúc công khai lâu dài, nên bổ sung bước này.
-
-Chưa kiểm thử trực tiếp với Supabase vì chưa có cấu hình dự án. Khi lỗi gửi, nội dung trong ô vẫn được giữ để thử lại.
-
-Hướng dẫn Supabase: https://supabase.com/docs/guides/api/securing-your-api
-
-## Các file chính
-
-- `index.html`: cấu trúc thiệp, nhãn hỗ trợ bàn phím và trình đọc màn hình.
-- `styles.css`: bìa, hoa lá, bố cục desktop/mobile, album, lịch và form.
-- `main.js`: tạo nội dung từ cấu hình, đếm ngược theo múi giờ Việt Nam, calendar link, album/phím mũi tên/vuốt, nhạc, lời chúc.
-- `config.js`: nội dung cần thay.
-- `assets/`: ảnh và trang trí đã lưu cục bộ.
-- `build.mjs`: sao chép bản tĩnh vào `dist/`.
-
-## Tài nguyên tham chiếu
-
-Ảnh mẫu và hai hình trang trí được lấy từ trang thiệp tham chiếu của Chung Đôi để đối chiếu theo yêu cầu. Bản dựng không sao chép mã ứng dụng, API, khóa bản đồ hoặc dữ liệu sổ lưu bút của trang gốc. Ảnh đã giảm kích thước để tải nhẹ hơn. Ghi nhận nguồn không có nghĩa là cấp lại giấy phép cho tài nguyên của bên thứ ba; thay ảnh mẫu bằng ảnh của bạn và sử dụng tài nguyên trang trí phù hợp quyền sử dụng trước khi phát hành chính thức.
