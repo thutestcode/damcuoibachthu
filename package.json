@@ -1,0 +1,10 @@
+{
+  "name": "damcuoibachthu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Thiệp cưới tông xanh lá và hoa trắng, HTML CSS JavaScript thuần",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node --check config.js && node --check main.js"
+  }
+}
