@@ -123,7 +123,7 @@ p, h1, h2, h3 { margin: 0; }
 footer { text-align: center; padding: 58px 40px 60px; }
 footer::before { display: none; }
 footer::after { width: 390px !important; height: 370px !important; right: -210px !important; bottom: -120px !important; opacity: .2 !important; }
-footer > p { font-size: 22px; line-height: 1.7; max-width: 580px; margin: auto; }
+footer > p { white-space: pre-line; text-wrap: balance; font-size: 22px; line-height: 1.7; max-width: 580px; margin: auto; }
 footer > span { font-size: 12px; letter-spacing: 2px; }
 footer .ornament { margin-top: 24px; margin-bottom: 20px; }
 .noscript-note { position: fixed; z-index: 101; bottom: 15px; left: 10%; width: 80%; text-align: center; color: white; background: var(--burgundy); padding: 12px; }

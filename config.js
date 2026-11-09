@@ -31,6 +31,6 @@ window.WEDDING_CONFIG = {
       mapsUrl: ''
     }
   ],
-  closing: 'Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!',
+  closing: 'Sự hiện diện của quý khách là niềm vinh hạnh của\ngia đình chúng tôi!',
   guestName: ''
 };
