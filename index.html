@@ -9,6 +9,7 @@
   <meta property="og:description" content="Ngày 24 tháng 11 năm 2026 — Trân trọng kính mời quý khách đến chung vui cùng gia đình.">
   <title>Anh Thư &amp; Thanh Bách | Thiệp mời lễ thành hôn</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="./assets/fonts/lora-regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="./styles.css">
   <script src="./config.js" defer></script>
   <script src="./main.js" defer></script>
@@ -27,6 +28,8 @@
       <button id="open-invitation" class="pill">Mở thiệp</button>
     </div>
   </div>
+
+  <div id="ambient-petals" class="petals ambient-petals" aria-hidden="true"></div>
 
   <main id="invitation" class="invitation" inert aria-label="Nội dung thiệp cưới">
     <section class="portraits" aria-label="Cô dâu và chú rể">
@@ -47,13 +50,13 @@
     <section class="announcement floral-section">
       <h2 class="section-title">HAPPY WEDDING</h2>
       <div class="families">
-        <div><p>Ông Bà</p><strong data-bind="bride.father"></strong><strong data-bind="bride.mother"></strong><p class="family-address" data-bind="bride.address"></p></div>
-        <div><p>Ông Bà</p><strong data-bind="groom.father"></strong><strong data-bind="groom.mother"></strong><p class="family-address" data-bind="groom.address"></p></div>
+        <div><p>Ông Bà</p><strong data-bind="bride.father"></strong><strong data-bind="bride.mother"></strong></div>
+        <div><p>Ông Bà</p><strong data-bind="groom.father"></strong><strong data-bind="groom.mother"></strong></div>
       </div>
       <p class="announcement-copy" data-bind="invitation"></p>
-      <h3 class="couple-name" data-bind="bride.fullName"></h3><span class="caption">CÔ DÂU</span>
+      <h3 class="couple-name" data-bind="bride.fullName"></h3>
       <div class="ampersand">&amp;</div>
-      <h3 class="couple-name" data-bind="groom.fullName"></h3><span class="caption">CHÚ RỂ</span>
+      <h3 class="couple-name" data-bind="groom.fullName"></h3>
     </section>
 
     <section class="event floral-section" aria-labelledby="event-title">
@@ -78,8 +81,6 @@
     </footer>
   </main>
 
-  <button id="music-toggle" class="music-toggle" aria-label="Phát nhạc" aria-pressed="false" hidden><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
-  <audio id="background-music" loop preload="none"></audio>
   <noscript><p class="noscript-note">Vui lòng bật JavaScript để mở thiệp và xem thông tin lễ cưới.</p></noscript>
 </body>
 </html>

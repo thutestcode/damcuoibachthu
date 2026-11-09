@@ -72,32 +72,108 @@
     li.append(time, details); $('timeline').append(li);
   });
 
-  const audio = $('background-music'), musicButton = $('music-toggle');
-  if (c.music) { audio.src = c.music; musicButton.hidden = false; }
-  function syncMusic() {
-    musicButton.setAttribute('aria-pressed', String(!audio.paused));
-    musicButton.setAttribute('aria-label', audio.paused ? 'Phát nhạc' : 'Tạm dừng nhạc');
+  // Hiện dần khi vào khung nhìn; các thuộc tính translate/scale giữ nguyên góc ảnh.
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const motionTargets = [];
+  let revealObserver = null;
+  let opened = false;
+  let scrollFrame = 0;
+  const flowers = [...document.querySelectorAll('.flora')];
+  const sections = [...document.querySelectorAll('.floral-section')];
+  function markReveal(element, direction = 'up', delay = 0) {
+    if (!element) return;
+    element.dataset.reveal = direction;
+    element.style.setProperty('--reveal-delay', `${delay}ms`);
+    motionTargets.push(element);
   }
-  audio.addEventListener('play', syncMusic);
-  audio.addEventListener('pause', syncMusic);
-  audio.addEventListener('error', () => musicButton.setAttribute('aria-label', 'Không tải được nhạc — thử lại'));
-  async function playMusic() { try { await audio.play(); } catch { syncMusic(); } }
-  musicButton.addEventListener('click', () => { if (audio.paused) playMusic(); else audio.pause(); });
-  function openInvitation(shouldPlay = true) {
+  markReveal(document.querySelector('.bride'), 'left', 50);
+  markReveal(document.querySelector('.groom'), 'right', 150);
+  document.querySelectorAll('.section-title').forEach(el => markReveal(el));
+  document.querySelectorAll('.families > div').forEach((el, n) => markReveal(el, n ? 'right' : 'left', n * 120));
+  document.querySelectorAll('.announcement-copy, .couple-name, .ampersand, .eyebrow, .wedding-date, .lunar-date').forEach(el => markReveal(el));
+  document.querySelectorAll('.timeline > li').forEach((el, n) => markReveal(el, 'up', n * 100));
+  document.querySelectorAll('footer > *').forEach((el, n) => markReveal(el, 'up', n * 100));
+
+  function showAll() {
+    motionTargets.forEach(el => el.classList.add('is-visible'));
+  }
+  function updateParallax() {
+    scrollFrame = 0;
+    if (!opened || reducedMotion.matches || document.hidden) return;
+    const center = innerHeight / 2;
+    flowers.forEach((el, n) => {
+      const rect = el.parentElement.getBoundingClientRect();
+      const offset = Math.max(-46, Math.min(46, (center - rect.top - rect.height / 2) * (.045 + n * .012)));
+      el.style.setProperty('--parallax-y', `${offset.toFixed(2)}px`);
+    });
+    sections.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const offset = Math.max(-32, Math.min(32, (center - rect.top - rect.height / 2) * .055));
+      el.style.setProperty('--floral-offset', `${offset.toFixed(2)}px`);
+    });
+  }
+  function requestParallax() {
+    if (opened && !reducedMotion.matches && !scrollFrame) scrollFrame = requestAnimationFrame(updateParallax);
+  }
+  function startReveals() {
+    if (reducedMotion.matches || !revealObserver) { showAll(); return; }
+    motionTargets.forEach(el => revealObserver.observe(el));
+    requestParallax();
+  }
+  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+    try {
+      revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: .12, rootMargin: '0px 0px -24px 0px' });
+      document.documentElement.classList.add('motion-enabled');
+    } catch { showAll(); }
+  } else showAll();
+  addEventListener('scroll', requestParallax, { passive: true });
+  addEventListener('resize', requestParallax, { passive: true });
+  document.addEventListener('focusin', event => {
+    event.target.closest('[data-reveal]')?.classList.add('is-visible');
+  });
+  document.addEventListener('visibilitychange', () => {
+    document.body.classList.toggle('motion-paused', document.hidden);
+    if (!document.hidden) requestParallax();
+  });
+  reducedMotion.addEventListener('change', () => {
+    if (reducedMotion.matches) {
+      revealObserver?.disconnect();
+      document.documentElement.classList.remove('motion-enabled');
+      showAll();
+      if (scrollFrame) { cancelAnimationFrame(scrollFrame); scrollFrame = 0; }
+    }
+  });
+
+  function openInvitation(skipTransition = false) {
+    if (opened) return;
+    opened = true;
+    if (skipTransition) $('cover').classList.add('skip-transition');
     $('cover').classList.add('is-open'); $('cover').inert = true;
     $('invitation').inert = false; document.body.classList.remove('is-covered');
+    scrollTo({ top: 0, behavior: 'instant' });
     $('invitation').setAttribute('tabindex', '-1'); $('invitation').focus({ preventScroll: true });
-    if (c.music && shouldPlay) playMusic();
+    if (skipTransition || reducedMotion.matches) startReveals();
+    else setTimeout(startReveals, 650);
   }
   $('open-invitation').addEventListener('click', () => openInvitation());
-  if (params.get('open') === '1') openInvitation(false);
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    for (let n = 0; n < 10; n++) {
-      const petal = document.createElement('i'); petal.className = 'petal';
-      petal.style.left = `${n * 10}%`;
-      petal.style.animationDuration = `${15 + n % 5 * 3}s`;
-      petal.style.animationDelay = `${-n * 3.1}s`;
-      $('cover').querySelector('.petals').append(petal);
+  if (params.get('open') === '1') openInvitation(true);
+  if (!reducedMotion.matches) {
+    for (const [container, count] of [[$('cover').querySelector('.petals'), 12], [$('ambient-petals'), 8]]) {
+      for (let n = 0; n < count; n++) {
+        const petal = document.createElement('i'); petal.className = 'petal';
+        petal.style.left = `${n * 100 / count}%`;
+        petal.style.width = `${6 + n % 4 * 2}px`;
+        petal.style.height = `${5 + n % 3 * 2}px`;
+        petal.style.animationDuration = `${17 + n % 5 * 3}s`;
+        petal.style.animationDelay = `${-n * 3.1}s`;
+        container.append(petal);
+      }
     }
   }
 })();

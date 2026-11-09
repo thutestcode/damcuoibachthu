@@ -2,11 +2,11 @@
 
 Thiệp mời lễ thành hôn **Nguyễn Anh Thư & Đồng Thanh Bách**, lúc **7:00, Thứ Ba ngày 24/11/2026**, tức **16 tháng 10 năm Bính Ngọ**.
 
-Tông burgundy, nền kem, hoa màu nước burgundy – hồng phấn – trắng ngà. Giữ bìa mở thiệp và bố cục chân dung nghiêng. Hai khung ảnh đang để trống theo yêu cầu, không tải ảnh mẫu.
+Tông burgundy, nền kem, hoa màu nước burgundy – hồng phấn – trắng ngà. Phông Lora có chân, được lưu cục bộ và có đầy đủ dấu tiếng Việt. Giữ bìa mở thiệp và bố cục chân dung nghiêng. Hai khung ảnh đang để trống theo yêu cầu, không tải ảnh mẫu.
 
 ## Nội dung hiện tại
 
-- Thông tin hai bên gia đình, lời mời và họ tên cô dâu – chú rể.
+- Tên bố mẹ hai bên gia đình (không hiện địa chỉ trong phần Happy Wedding), lời mời và họ tên hai bạn (không có nhãn “Cô dâu/Chú rể” dưới họ tên).
 - Ngày giờ lễ cưới và ngày âm lịch.
 - Timeline: 7:00 lễ ăn hỏi tại nhà gái; 10:00 lễ đón dâu tại nhà trai; 12:00 bữa cơm thân mật.
 - Địa chỉ dưới mô tả mỗi mốc; link Google Maps ở hai mốc tại Ocean Park 3.
@@ -28,7 +28,6 @@ Mở `config.js`:
 | Ngày âm lịch | `lunarDate`, nhập thủ công |
 | Lịch trình | `timeline`, mỗi mục có `time`, `title`, `address` |
 | Google Maps | `mapsQuery` hoặc `mapsUrl` ở từng mục lịch trình |
-| Nhạc tùy chọn | `music`, để trống sẽ ẩn nút nhạc |
 | Lời kết | `closing` |
 
 Để ảnh trống, giữ `photo: ''`. Để thêm ảnh, tải ảnh vào `assets/photos/` rồi điền đường dẫn. Khung sẽ tự hiển thị ảnh khi cấu hình có giá trị. Dùng đường dẫn tương đối `./assets/...` để chạy trên GitHub Pages của repo.
@@ -37,7 +36,20 @@ Hai link Maps hiện mở **tìm kiếm theo đúng địa chỉ đã cung cấp
 
 Có thể đặt tên khách mời qua `?guest=Anh%20Ch%E1%BB%8B` hoặc `guestName`. `?open=1` mở thẳng nội dung thiệp.
 
-Đặt MP3 vào `assets/music.mp3` rồi sửa `music: './assets/music.mp3'` để bật nhạc sau khi bấm mở thiệp. Hiện chưa có file nhạc.
+Không có nhạc, nút phát nhạc hoặc phần tử audio.
+
+## Chuyển động và phông chữ
+
+- Bìa hiện dần, tên/ngày/lời mời/nút xuất hiện theo nhịp; dấu tim và hoa chuyển động nhẹ.
+- Bấm mở thiệp: bìa dịch lên và mờ đi, nội dung bắt đầu từ đầu trang.
+- Hai khung chân dung vào từ trái/phải, giữ góc nghiêng và chuyển động rất nhẹ.
+- Hoa nền dịch chuyển theo vị trí cuộn, kết hợp độ đung đưa nhỏ.
+- Từng tiêu đề, phần gia đình, họ tên, ngày cưới và mốc timeline hiện dần khi vào khung nhìn; mỗi mục chỉ chạy một lần trong một lượt xem.
+- Cánh hoa rơi nhẹ ở bìa và nội dung; không che thao tác với link.
+- Tự giảm chuyển động khi thiết bị bật `prefers-reduced-motion`; tự tạm dừng animation khi tab bị ẩn. Nếu trình duyệt không hỗ trợ IntersectionObserver, nội dung vẫn hiển thị đầy đủ.
+- Font Lora regular/semibold nằm trong `assets/fonts/`, kèm giấy phép SIL Open Font License. Không tải font từ dịch vụ bên ngoài lúc khách xem thiệp.
+
+Phông chữ: https://fonts.google.com/specimen/Lora
 
 ## Chạy và xuất bản
 

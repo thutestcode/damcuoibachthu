@@ -3,13 +3,11 @@ window.WEDDING_CONFIG = {
   bride: {
     name: 'Anh Thư', fullName: 'Nguyễn Anh Thư',
     father: 'Nguyễn Anh Thơ', mother: 'Nguyễn Thị Thu Hương',
-    address: 'AD-14 Vinhomes Ocean Park 3, Văn Giang, Hưng Yên',
     photo: ''
   },
   groom: {
     name: 'Thanh Bách', fullName: 'Đồng Thanh Bách',
     father: 'Đồng Thanh Tùng', mother: 'Nguyễn Thị Thu Hương',
-    address: 'Chùa Bộc, Hà Nội',
     photo: ''
   },
   invitation: 'TRÂN TRỌNG BÁO TIN\nLỄ THÀNH HÔN CỦA CON CHÚNG TÔI',
@@ -33,8 +31,6 @@ window.WEDDING_CONFIG = {
       mapsUrl: ''
     }
   ],
-  // Đặt file nhạc vào assets/music.mp3 và nhập './assets/music.mp3' để bật nút nhạc.
-  music: '',
   closing: 'Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!',
   guestName: ''
 };
