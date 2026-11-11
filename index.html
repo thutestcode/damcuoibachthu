@@ -32,26 +32,11 @@
   <div id="ambient-petals" class="petals ambient-petals" aria-hidden="true"></div>
 
   <main id="invitation" class="invitation" inert aria-label="Nội dung thiệp cưới">
-    <section class="portraits" aria-label="Cô dâu và chú rể">
-      <img class="flora portrait-flower-top" src="./assets/decorations/burgundy-flowers.png" alt="">
-      <img class="flora portrait-flower-fade" src="./assets/decorations/burgundy-flowers.png" alt="">
-      <div class="portrait-band" aria-hidden="true"></div>
-      <div class="person bride">
-        <div class="portrait-frame"><img id="bride-photo" alt="Cô dâu Nguyễn Anh Thư" hidden></div>
-        <div class="person-name"><p>Cô Dâu</p><h2 data-bind="bride.name"></h2></div>
-      </div>
-      <div class="person groom">
-        <div class="person-name"><p>Chú Rể</p><h2 data-bind="groom.name"></h2></div>
-        <div class="portrait-frame"><img id="groom-photo" alt="Chú rể Đồng Thanh Bách" hidden></div>
-      </div>
-      <img class="flora portrait-flower-bottom" src="./assets/decorations/burgundy-flowers.png" alt="">
-    </section>
-
     <section class="announcement floral-section">
       <h2 class="section-title">HAPPY WEDDING</h2>
       <div class="families">
-        <div><p>Ông Bà</p><strong data-bind="bride.father"></strong><strong data-bind="bride.mother"></strong></div>
-        <div><p>Ông Bà</p><strong data-bind="groom.father"></strong><strong data-bind="groom.mother"></strong></div>
+        <div><h3 class="family-side">Nhà gái</h3><p class="family-parents">Ông Bà</p><strong data-bind="bride.father"></strong><strong data-bind="bride.mother"></strong></div>
+        <div><h3 class="family-side">Nhà trai</h3><p class="family-parents">Ông Bà</p><strong data-bind="groom.father"></strong><strong data-bind="groom.mother"></strong></div>
       </div>
       <p class="announcement-copy" data-bind="invitation"></p>
       <h3 class="couple-name" data-bind="bride.fullName"></h3>
@@ -60,8 +45,8 @@
     </section>
 
     <section class="event floral-section" aria-labelledby="event-title">
-      <h2 id="event-title" class="section-title">THÔNG TIN TIỆC CƯỚI</h2>
-      <h3 class="eyebrow">TIỆC CƯỚI SẼ DIỄN RA VÀO LÚC:</h3>
+      <h2 id="event-title" class="section-title">THÔNG TIN LỄ CƯỚI</h2>
+      <h3 class="eyebrow">LỄ CƯỚI SẼ DIỄN RA VÀO LÚC:</h3>
       <div class="wedding-date">
         <span id="event-time" class="event-time"></span>
         <div class="date-columns"><span id="event-weekday"></span><strong id="event-day"></strong><span id="event-month-year"></span></div>

@@ -30,11 +30,6 @@
   }).format(date).toUpperCase();
   $('event-month-year').textContent = `THÁNG ${Number(parts.month)}\n${parts.year}`;
 
-  // Giữ hai khung trống khi chưa có ảnh; không tạo yêu cầu tải ảnh bị lỗi.
-  for (const person of ['bride', 'groom']) {
-    const image = $(`${person}-photo`);
-    if (c[person].photo) { image.src = c[person].photo; image.hidden = false; }
-  }
   function safeHttpUrl(value) {
     try {
       const url = new URL(value);
@@ -72,13 +67,12 @@
     li.append(time, details); $('timeline').append(li);
   });
 
-  // Hiện dần khi vào khung nhìn; các thuộc tính translate/scale giữ nguyên góc ảnh.
+  // Hiện dần từng phần nội dung khi vào khung nhìn.
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const motionTargets = [];
   let revealObserver = null;
   let opened = false;
   let scrollFrame = 0;
-  const flowers = [...document.querySelectorAll('.flora')];
   const sections = [...document.querySelectorAll('.floral-section')];
   function markReveal(element, direction = 'up', delay = 0) {
     if (!element) return;
@@ -86,8 +80,6 @@
     element.style.setProperty('--reveal-delay', `${delay}ms`);
     motionTargets.push(element);
   }
-  markReveal(document.querySelector('.bride'), 'left', 50);
-  markReveal(document.querySelector('.groom'), 'right', 150);
   document.querySelectorAll('.section-title').forEach(el => markReveal(el));
   document.querySelectorAll('.families > div').forEach((el, n) => markReveal(el, n ? 'right' : 'left', n * 120));
   document.querySelectorAll('.announcement-copy, .couple-name, .ampersand, .eyebrow, .wedding-date, .lunar-date').forEach(el => markReveal(el));
@@ -101,11 +93,6 @@
     scrollFrame = 0;
     if (!opened || reducedMotion.matches || document.hidden) return;
     const center = innerHeight / 2;
-    flowers.forEach((el, n) => {
-      const rect = el.parentElement.getBoundingClientRect();
-      const offset = Math.max(-46, Math.min(46, (center - rect.top - rect.height / 2) * (.045 + n * .012)));
-      el.style.setProperty('--parallax-y', `${offset.toFixed(2)}px`);
-    });
     sections.forEach(el => {
       const rect = el.getBoundingClientRect();
       const offset = Math.max(-32, Math.min(32, (center - rect.top - rect.height / 2) * .055));
