@@ -57,6 +57,12 @@
       mapsUrl = url.href;
     }
     if (mapsUrl) {
+      const addressLink = document.createElement('a');
+      addressLink.href = mapsUrl;
+      addressLink.target = '_blank'; addressLink.rel = 'noopener noreferrer';
+      addressLink.textContent = item.address;
+      addressLink.setAttribute('aria-label', `Mở vị trí ${item.address} trên Google Maps`);
+      address.replaceChildren(addressLink);
       const link = document.createElement('a');
       link.className = 'timeline-map'; link.href = mapsUrl;
       link.target = '_blank'; link.rel = 'noopener noreferrer';
