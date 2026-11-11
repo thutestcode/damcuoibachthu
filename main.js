@@ -63,12 +63,6 @@
       addressLink.textContent = item.address;
       addressLink.setAttribute('aria-label', `Mở vị trí ${item.address} trên Google Maps`);
       address.replaceChildren(addressLink);
-      const link = document.createElement('a');
-      link.className = 'timeline-map'; link.href = mapsUrl;
-      link.target = '_blank'; link.rel = 'noopener noreferrer';
-      link.textContent = 'Xem trên Google Maps ↗';
-      link.setAttribute('aria-label', `Xem địa điểm ${item.time} trên Google Maps: ${item.address}`);
-      details.append(link);
     }
     li.append(time, details); $('timeline').append(li);
   });

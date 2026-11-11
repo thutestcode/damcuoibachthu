@@ -105,8 +105,8 @@ p, h1, h2, h3 { margin: 0; }
 .timeline-address { margin-top: 8px; color: #89646c; font-size: 15px; line-height: 1.65; }
 .timeline-address a { color: inherit; text-decoration-color: #c5a1ab; text-underline-offset: 4px; }
 .timeline-address a:hover { color: var(--burgundy); }
-.timeline-map { display: inline-block; font-size: 13px; text-underline-offset: 4px; margin-top: 10px; color: #8a3b51; }
-.timeline-map:hover { color: #af5c73; }
+
+
 footer { text-align: center; padding: 58px 40px var(--page-edge-space); }
 footer::before { display: none; }
 footer::after { width: 390px !important; height: 370px !important; right: -210px !important; bottom: -120px !important; opacity: .2 !important; }
@@ -155,7 +155,7 @@ footer .ornament { margin-top: 24px; margin-bottom: 20px; }
   .timeline time { font-size: 17px; }
   .timeline h3 { font-size: 16px; line-height: 1.5; }
   .timeline-address { font-size: 13px; margin-top: 7px; }
-  .timeline-map { font-size: 12px; margin-top: 9px; }
+
   footer { padding: 38px 26px var(--page-edge-space); }
   footer > p { font-size: 20px; }
   footer > span { font-size: 11px; }
@@ -204,8 +204,8 @@ footer .ornament { margin-top: 24px; margin-bottom: 20px; }
 .timeline li::before { transform-origin: top; }
 .motion-enabled .timeline li:not(.is-visible)::before { scale: 1 0; }
 .motion-enabled .timeline li.is-visible::before { scale: 1 1; transition: scale 1.25s ease .25s; }
-.timeline-map { transition: color .25s ease, translate .25s ease; }
-.timeline-map:hover { translate: 2px 0; }
+
+
 .motion-paused *, .motion-paused *::before, .motion-paused *::after { animation-play-state: paused !important; }
 /* Bìa có thể đóng nhưng nội dung chưa vào khung nhìn vẫn chỉ hiện khi cuộn tới. */
 .is-covered .invitation *, .is-covered .invitation *::before, .is-covered .invitation *::after { animation-play-state: paused; }
